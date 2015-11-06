@@ -5,6 +5,15 @@ var PixiTree = require("./PixiTree");
 var DetailView = require("./DetailView");
 var SplitView = require("./SplitView");
 var proxy = require("../services/proxy");
+var tree = require("../services/tree");
+
+tree.subscribe(function (data) {
+	console.log(data);
+}, function (error) {
+	console.warn(error);
+}, function () {
+	console.info('complete');
+})
 
 proxy.BASE = 'http://localhost/pixi-inspector/src/';
 // require('../pixi.inspector'); // Enable for livereload
