@@ -27,6 +27,7 @@ var TreeView = React.createClass({
 	getDefaultProps: function () {
 		var noop = function () {};
 		return  {
+      index: 0,
 			leaf: false,
 			selected: false,
 
@@ -44,10 +45,10 @@ var TreeView = React.createClass({
 			nodes = <div style={{paddingLeft: 14}}>{this.props.renderChildren()}</div>;
 		}
 		var className = 'treeview' + (this.props.selected ? ' treeview--selected' : '');
-		 
+
 		return <div>
 			<div className={ className } onMouseDown={this.click} tabIndex="1" onKeyDown={this.keyup}>
-				{this.getIcon()}{this.props.title}
+				{this.getIcon()}{this.props.title}[{this.props.index}]
 			</div>
 			{nodes}
 		</div>
@@ -82,19 +83,19 @@ var TreeView = React.createClass({
 		if (key === KEYS.UP) {
 			this.props.onSelectPrevious(e);
 		} else if (key === KEYS.DOWN) {
-			this.props.onSelectNext(e); 
+			this.props.onSelectNext(e);
 		} else if (key === KEYS.LEFT) {
 			if (this.props.collapsed) {
-				this.props.onSelectParent(e); 
+				this.props.onSelectParent(e);
 			} else {
-				this.props.onCollapse(e); 
+				this.props.onCollapse(e);
 			}
 		} else if (key === KEYS.RIGHT) {
 			if (!this.props.leaf) {
 				if (this.props.collapsed) {
-					this.props.onExpand(e); 
+					this.props.onExpand(e);
 				} else {
-					this.props.onSelectNext(e); 
+					this.props.onSelectNext(e);
 				}
 			}
 		}

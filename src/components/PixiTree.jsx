@@ -21,17 +21,18 @@ var PixiTree = React.createClass({
 			return [];
 		}
 
-		return node.children.map(node => {
-			return <TreeView 
-				key={node.id} 
-				title={node.type} 
+		return node.children.map((node, index) => {
+			return <TreeView
+        index={index}
+				key={node.id}
+				title={node.type}
 				leaf={node.leaf}
-				collapsed={node.collapsed} 
-				selected={node.id === this.props.selectedId} 
+				collapsed={node.collapsed}
+				selected={node.id === this.props.selectedId}
 				renderChildren={this.subtree.bind(this, node)}
-				onExpand={this.expand.bind(this, node)} 
-				onCollapse={this.collapse.bind(this, node)} 
-				onSelect={this.select.bind(this, node)} 
+				onExpand={this.expand.bind(this, node)}
+				onCollapse={this.collapse.bind(this, node)}
+				onSelect={this.select.bind(this, node)}
 				onSelectParent={this.selectParent.bind(this, node)}
 				onSelectPrevious={this.selectPrevious.bind(this, node)}
 				onSelectNext={this.selectNext.bind(this, node)}

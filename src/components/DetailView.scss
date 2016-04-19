@@ -11,6 +11,34 @@
 	}
 }
 .detailview__value {
-	color: #333;
-	margin-bottom: 2px;
+  display: inline-block;
+  color: #333;
+  margin-bottom: 2px;
+}
+.detailview__color {
+  position: absolute;
+  display: block;
+  border: 1px solid #cccccc;
+  margin-left: 4px;
+  min-width: 80px;
+  height: 15px;
+  top: -2px;
+  left: 100%;
+}
+.detailview > div > span {
+  position: relative;
+}
+.detailview > [data-reactid*="pivot=1y"]:after,
+.detailview > [data-reactid*=tint]:after,
+.detailview > [data-reactid*=renderable]:after,
+.detailview > [data-reactid*=fillAlpha]:after,
+.detailview > [data-reactid*=lineWidth]:after,
+.detailview > [data-reactid*=filterArea]:after,
+.detailview > [data-reactid*=worldAlpha]:after {
+  content: '';
+  display: block;
+  width: 100%;
+  min-height: 7px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 7px;
 }

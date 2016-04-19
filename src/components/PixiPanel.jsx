@@ -12,13 +12,12 @@ var DEBUG = false;
 
 var PixiPanel = React.createClass({
 
-	getInitialState: function () {
-		var state = {
+	componentWillMount: function () {
+		this.setState({
 			tree: false,
 			selected: false,
 			pixiDetected: false
-		}
-		return state;
+		});
 	},
 	render: function () {
 		var tree = this.state.tree;
@@ -29,10 +28,10 @@ var PixiPanel = React.createClass({
 		var selected = this.state.selected;
 		var selectedId = selected ? selected._inspector.id : false;
 		var context = this.state.context || {};
-		return <span className="pixi-panel">{reboot}<SplitView>
+		return <div className="pixi-panel">{reboot}<SplitView>
 			<PixiTree tree={tree} selectedId={selectedId} context={context} onRefresh={this.refresh} />
 			{selected ? <DetailView data={selected} />: ''}
-		</SplitView></span>
+		</SplitView></div>
 	},
 	componentDidMount: function () {
 		this.detectTimeout = 500;
@@ -51,7 +50,7 @@ var PixiPanel = React.createClass({
 					});
 				} else if (detected === 'INSPECTOR') {
 					this.setState({pixiDetected: true});
-					this.poll(); 
+					this.poll();
 				} else {
 					this.timeout = setTimeout(this.detectPixi, this.detectTimeout); // Check for PIXI every x miliseconds
 					if (this.detectTimeout < 3000) {

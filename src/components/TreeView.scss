@@ -2,6 +2,9 @@
 	color: #808;
 	white-space: nowrap;
 	padding: 1px;
+  &:focus {
+    outline: none;
+  }
 	&:hover:not(.treeview--selected) {
 		background: #eaf1fb;
 	}
@@ -13,4 +16,10 @@
 		color: white;
 		outline: none;
 	}
+}
+
+.tree-toggle--expand,
+.tree-toggle--collapse {
+  -webkit-user-select: none;
+  user-select: none;
 }

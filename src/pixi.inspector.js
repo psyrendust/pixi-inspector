@@ -1,8 +1,9 @@
+/* eslint-disable */
 if (!window.PIXI) {
 	throw new Error('PIXI must be loaded before pixi.inspector.js')
 }
 PIXI.inspector = {
-	
+
 	highlight: PIXI.Graphics ? new PIXI.Graphics() : false, // Only supported in PIXI v3
 
 	/**
@@ -16,7 +17,7 @@ PIXI.inspector = {
 			collapsed: false
 		}
 	},
-	
+
 	/**
 	 * Path the Renderer.render method to get a hold of the stage object(s)
 	 */
@@ -47,7 +48,7 @@ PIXI.inspector = {
 			hl.lineStyle(1, 0x00007eff, 0.6);
 			var bounds = $pixi.getBounds();
 			// Using localBounds gives rotation to the highlight, but needs to take the container transformations into account to work propertly.
-			// var bounds = $pixi.getLocalBounds(); 
+			// var bounds = $pixi.getLocalBounds();
 			// hl.position = $pixi.position.clone();
 			// hl.rotation = $pixi.rotation;
 			// hl.scale = $pixi.scale.clone();
@@ -73,7 +74,7 @@ PIXI.inspector = {
 			return {
 				tree: this.tree(),
 				selected: false,
-				context: {},	
+				context: {},
 			};
 		}
 		return {
@@ -234,9 +235,9 @@ PIXI.inspector = {
 	generateId: function () {
 		this._autoincrement++;
 		return this._autoincrement;
-	}, 
+	},
 	detectType: function (node) {
-		if (!node.constructor) {
+    if (!node.constructor) {
 			return 'Unknown';
 		}
 		switch (node.constructor) {
@@ -472,6 +473,9 @@ PIXI.inspector = {
 				case game.SceneMain: return 'game.SceneMain';
 			}
 		}
+    if (node.__proto__ && node.__proto__.constructor && node.__proto__.constructor.name && node.__proto__.constructor.name.length > 1) {
+      return node.__proto__.constructor.name;
+    }
 		return 'Unknown';
 
 	}

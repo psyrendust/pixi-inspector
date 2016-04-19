@@ -1,11 +1,31 @@
 .splitview {
-	display: flex;
+  display: flex;
+  flex: auto;
+  flex-direction: row !important;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
 }
 .splitview__item {
+	display: flex;
+  flex: none;
+  position: relative;
 	overflow-y: auto;
 	max-height: 100%;
 	padding: 5px;
-	&:not(:first-child) {
-		border-left: 1px solid #ccc;
-	}
+  z-index: 1;
+  border: 0;
+  &:not(:first-of-type) {
+    flex: auto;
+    border-left: 1px solid rgb(64%, 64%, 64%);
+  }
+}
+.splitview__resize {
+  cursor: ew-resize;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  z-index: 1000;
+  margin-left: -3;
 }
